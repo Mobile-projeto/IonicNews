@@ -80,7 +80,6 @@
               "buildTarget": "app:build:development"
             },
             "ci": {
-              "progress": false
             }
           },
           "defaultConfiguration": "development"
@@ -136,7 +135,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "de099723-8976-4cd4-9ff1-5c26799a787f"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

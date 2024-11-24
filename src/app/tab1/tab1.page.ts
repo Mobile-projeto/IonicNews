@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GetdataService } from '../getdata.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
+  data: any;
+  constructor(
+   public getdata: GetdataService
+  ) {}
 
-  constructor() {}
-
+  ngOnInit() {
+    this.getdata.doGet().subscribe(res => {
+      this.data = res.data.articles;
+      console.log(this.data);
+    });
+  }
+  
 }
