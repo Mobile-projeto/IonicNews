@@ -1,0 +1,102 @@
+/* Estilização do cabeçalho */
+ion-header {
+    ion-toolbar {
+      background: #000000; /* Cor primária */
+      color: #fff; /* Texto em branco */
+      ion-title {
+        font-size: 1.5rem; /* Tamanho padrão do título */
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+  
+  /* Estilização do conteúdo */
+  ion-content {
+    --background: #f4f5f8; /* Cor de fundo leve */
+    padding: 1rem;
+  }
+  
+  /* Estilização do card */
+ion-card {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  
+    .image-container {
+      position: relative; /* Define o contêiner como relativo */
+    }
+    
+    .favorite-button {
+      position: absolute; /* Botão posicionado sobre a imagem */
+      top: 0px; /* Distância do topo da imagem */
+      right: 0px; /* Distância da lateral direita */
+      z-index: 10; /* Garante que o botão fique acima da imagem */
+      color: yellow; /* Ícone em branco */
+    //   background: rgba(0, 0, 0, 0.1); /* Fundo semitransparente para destaque */
+      border-radius: 50%; /* Forma circular */
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      ion-icon {
+        font-size: 2rem; /* Aumenta o tamanho do ícone */
+      }
+    }
+  
+    img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    ion-card-header {
+      background: #ffffff;
+      ion-card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+      }
+      ion-card-subtitle {
+        font-size: 0.9rem;
+        color: #777;
+      }
+    }
+  
+    ion-card-content {
+      background-color: #fff;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #777;
+    }
+  }
+  
+  /* Ajustes para dispositivos maiores (exemplo: iPad) */
+  @media (min-width: 768px) {
+    ion-header {
+      ion-toolbar {
+        ion-title {
+          font-size: 2rem; /* Aumenta o tamanho do título */
+        }
+      }
+    }
+  
+    ion-card {
+      ion-card-header {
+        ion-card-title {
+          font-size: 2rem; /* Aumenta o título do card */
+        }
+        ion-card-subtitle {
+          font-size: 1.6rem; /* Aumenta o subtítulo */
+        }
+      }
+  
+      ion-card-content {
+        font-size: 1.6rem; /* Aumenta o conteúdo do card */
+      }
+    }
+  }
+  

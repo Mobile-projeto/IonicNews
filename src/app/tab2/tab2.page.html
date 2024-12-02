@@ -1,17 +1,27 @@
+<!-- src/app/tab2/tab2.page.html -->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title>Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let article of favorites">
+      <ion-thumbnail slot="start">
+        <img [src]="article.urlToImage" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.author }}</p>
+      </ion-label>
+      <ion-button 
+        class="favorite-button" 
+        fill="clear" 
+        (click)="toggleFavorite(article)">
+        <ion-icon [name]="isFavorite(article) ? 'star' : 'star-outline'" class="favorite-icon"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

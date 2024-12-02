@@ -1,17 +1,21 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Perfil do Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ user?.name }}</ion-card-title>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ user?.email }}</p>
+      <p><strong>Data de criação:</strong> {{ user?.createdAt | date }}</p>
+      <p><strong>Favoritos:</strong> {{ user?.favoritePages.length }} páginas</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" (click)="editProfile()">Editar Perfil</ion-button>
 </ion-content>

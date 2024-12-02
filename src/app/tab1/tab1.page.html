@@ -1,21 +1,45 @@
+<!-- src/app/tab1/tab1.page.html -->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      NewsApp
-    </ion-title>
+    <ion-title>NewsApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- Filtro de categoria -->
+  <ion-item>
+    <ion-label>Categorias</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterNews()">
+      <ion-select-option value="all">Todos</ion-select-option> <!-- Adicionando a opção "Todos" -->
+      <ion-select-option value="sports">Esportes</ion-select-option>
+      <ion-select-option value="science">Ciência</ion-select-option>
+      <ion-select-option value="technology">Tecnologia</ion-select-option>
+      <ion-select-option value="business">Negócios</ion-select-option>
+      <ion-select-option value="entertainment">Entretenimento</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Exibição das notícias -->
   <ion-card *ngFor="let article of data">
-    <img [src]="article.urlToImage">
+    <div class="image-container">
+      <img [src]="article.urlToImage">
+      <ion-button 
+        class="favorite-button" 
+        fill="clear" 
+        (click)="addFavorite(article)">
+        <ion-icon [name]="isFavorite(article) ? 'star' : 'star-outline'" class="favorite-icon"></ion-icon>
+      </ion-button>
+    </div>
+
     <ion-card-header>
-      <ion-card-title>{{article.title}}</ion-card-title>
-      <ion-card-subtitle>{{article.author}} - {{article.publishedAt}}</ion-card-subtitle>
+      <ion-card-title>{{ article.title }}</ion-card-title>
+      <ion-card-subtitle>{{ article.author }} - {{ article.publishedAt }}</ion-card-subtitle>
     </ion-card-header>
-  
+
     <ion-card-content>
-      {{article.description}}
+      {{ article.description }}
     </ion-card-content>
   </ion-card>
 </ion-content>
+
