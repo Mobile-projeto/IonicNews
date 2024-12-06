@@ -14,13 +14,11 @@ export class GetdataService {
 
   // Atualizando o método para aceitar uma categoria
   doGet(category: string = 'all') {
-    let url = 'https://newsapi.org/v2/top-headlines?apiKey=9f5d4ef1ea5b44c9bf855efbe62b9fdb';
+    let url = 'https://newsapi.org/v2/everything?q=${q}&sortBy=publishedAt&language=pt&apiKey=833d2d44a59f4441b7b54fc0dbfb58f8';
     if (category && category !== 'all') {
-      url += `&category=${category}`;
+      url = `https://newsapi.org/v2/everything?q=${category}&sortBy=publishedAt&language=pt&apiKey=833d2d44a59f4441b7b54fc0dbfb58f8`;
     }
-    if (category === 'all') {
-      url += `&country=us`;
-    }
+
 
     console.log('URL da requisição:', url);
 

@@ -30,9 +30,15 @@ export class RegisterPage {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        this.errorMessage = 'Erro ao cadastrar usuário.';
+        this.errorMessage = 'Usuário já cadastrado!';
         console.error(error);
       },
     });
+  }
+
+  
+  goToLogin() {
+    // Navega para a página de login
+    this.router.navigate(['/login']);
   }
 }

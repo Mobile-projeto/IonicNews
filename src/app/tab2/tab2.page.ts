@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetdataService } from '../getdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -7,9 +8,9 @@ import { GetdataService } from '../getdata.service';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-  favorites: any[] = [];  // Lista de favoritos
+  favorites: any[] = []; // Lista de favoritos
 
-  constructor(private getdata: GetdataService) {}
+  constructor(private getdata: GetdataService, private router: Router) {}
 
   ngOnInit() {
     // Inscreve-se no Observable de favoritos para que a página seja atualizada automaticamente
@@ -31,5 +32,10 @@ export class Tab2Page implements OnInit {
   // Verifica se o artigo está na lista de favoritos
   isFavorite(article: any): boolean {
     return this.getdata.isFavorite(article);
+  }
+
+  // Abre a página de detalhes para o artigo
+  openArticleDetails(article: any) {
+    this.router.navigate(['/news-detail'], { state: { article } });
   }
 }

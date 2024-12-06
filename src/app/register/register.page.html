@@ -1,28 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Cadastro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <form (ngSubmit)="register()">
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input [(ngModel)]="username" name="username" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
-    </ion-item>
-
-    <ion-button expand="full" type="submit">Cadastrar</ion-button>
-  </form>
-
-  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-</ion-content>
+<div>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Cadastro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="conteudo">
+    <form (ngSubmit)="register()">
+        <ion-input [(ngModel)]="username" name="username" placeholder="Digite seu nome aqui" required></ion-input>
+        <ion-input [(ngModel)]="email" name="email" type="email" placeholder="Digite seu email aqui" required></ion-input>
+        <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Digite sua senha aqui" required></ion-input>
+      <ion-button expand="full" type="submit" class="submit">Cadastrar</ion-button>
+      <ion-button expand="full" fill="clear" (click)="goToLogin()" class="already">Já possuo uma conta!</ion-button>
+    </form>
+  
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+  
+  </ion-content>
+</div>

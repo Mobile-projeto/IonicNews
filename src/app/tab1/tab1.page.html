@@ -1,5 +1,3 @@
-<!-- src/app/tab1/tab1.page.html -->
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>NewsApp</ion-title>
@@ -11,35 +9,36 @@
   <ion-item>
     <ion-label>Categorias</ion-label>
     <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterNews()">
-      <ion-select-option value="all">Todos</ion-select-option> <!-- Adicionando a opção "Todos" -->
+      <ion-select-option value="all">Todos</ion-select-option>
+      <ion-select-option value="games">Jogos</ion-select-option>
+      <ion-select-option value="technology">Tecnologia</ion-select-option>
       <ion-select-option value="sports">Esportes</ion-select-option>
       <ion-select-option value="science">Ciência</ion-select-option>
-      <ion-select-option value="technology">Tecnologia</ion-select-option>
-      <ion-select-option value="business">Negócios</ion-select-option>
       <ion-select-option value="entertainment">Entretenimento</ion-select-option>
     </ion-select>
   </ion-item>
 
   <!-- Exibição das notícias -->
-  <ion-card *ngFor="let article of data">
+  <ion-card *ngFor="let article of data" (click)="openArticleDetails(article)">
     <div class="image-container">
-      <img [src]="article.urlToImage">
+      <img [src]="article.urlToImage" *ngIf="article.urlToImage" alt="Imagem da notícia">
       <ion-button 
         class="favorite-button" 
         fill="clear" 
-        (click)="addFavorite(article)">
+        (click)="addFavorite(article); $event.stopPropagation()">
         <ion-icon [name]="isFavorite(article) ? 'star' : 'star-outline'" class="favorite-icon"></ion-icon>
       </ion-button>
     </div>
 
     <ion-card-header>
       <ion-card-title>{{ article.title }}</ion-card-title>
-      <ion-card-subtitle>{{ article.author }} - {{ article.publishedAt }}</ion-card-subtitle>
+      <ion-card-subtitle>
+        {{ article.author || 'Autor desconhecido' }} - {{ article.publishedAt | date:'short' }}
+      </ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      {{ article.description }}
+      {{ article.description || 'Descrição indisponível.' }}
     </ion-card-content>
   </ion-card>
 </ion-content>
-
