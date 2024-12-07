@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <!-- Filtro de categoria -->
-  <ion-item>
+  <ion-item class="category-bar">
     <ion-label>Categorias</ion-label>
     <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterNews()">
       <ion-select-option value="all">Todos</ion-select-option>

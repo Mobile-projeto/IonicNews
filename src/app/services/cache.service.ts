@@ -32,4 +32,6 @@ export class CacheService {
   clearAllCache(): void {
     localStorage.clear();
   }
+
+  
 }

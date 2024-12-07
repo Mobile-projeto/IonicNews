@@ -1,21 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Perfil do Usuário</ion-title>
+    <ion-title>Tempo por Categoria</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ user?.name }}</ion-card-title>
-    </ion-card-header>
+  <ion-list>
+    <ion-item *ngFor="let category of categoryTimes | keyvalue">
+      <ion-label>
+        <h2>{{ category.key }}</h2>
+        <p>Tempo total: {{ (category.value / 1000).toFixed(1) }} segundos</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-    <ion-card-content>
-      <p><strong>Email:</strong> {{ user?.email }}</p>
-      <p><strong>Data de criação:</strong> {{ user?.createdAt | date }}</p>
-      <p><strong>Favoritos:</strong> {{ user?.favoritePages.length }} páginas</p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-button expand="full" (click)="editProfile()">Editar Perfil</ion-button>
+  <!-- Botão para resetar os tempos -->
+  <ion-button expand="full" (click)="resetTimes()">Resetar Tempos</ion-button>
 </ion-content>

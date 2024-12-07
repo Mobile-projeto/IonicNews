@@ -1,42 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetdataService } from '../getdata.service';
 import { Router } from '@angular/router';
-import { CacheService } from '../services/cache.service';  // Importando o serviço de cache
+import { CacheService } from '../services/cache.service';
+import { TimeTrackerService } from '../services/time-tracker.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page implements OnInit, OnDestroy {
   data: any[] = []; // Dados das notícias
   selectedCategory: string = 'all'; // Categoria selecionada, valor inicial "all" para mostrar todas as notícias
 
   constructor(
-    public getdata: GetdataService, 
+    public getdata: GetdataService,
     private router: Router,
-    private cacheService: CacheService  // Injetando o serviço de cache
+    private cacheService: CacheService,
+    private timeTrackerService: TimeTrackerService // Serviço de rastreamento de tempo
   ) {}
 
   ngOnInit() {
-    // Carregar notícias ao iniciar com a categoria "Todos"
-    this.loadNews();
+    this.loadNews(); // Carrega as notícias ao iniciar
+  }
+
+  ionViewWillEnter() {
+    // Começa a rastrear a categoria ao entrar na aba
+    this.timeTrackerService.startTracking(this.selectedCategory);
+  }
+
+  ionViewWillLeave() {
+    // Para o rastreamento ao sair da aba
+    this.timeTrackerService.stopTracking();
+  }
+
+  ngOnDestroy() {
+    // Garantia de que o rastreamento será interrompido se o componente for destruído
+    this.timeTrackerService.stopTracking();
   }
 
   // Carregar notícias com base na categoria selecionada
   loadNews() {
-    const cachedData = this.cacheService.getFromCache(this.selectedCategory);  // Verifica se os dados estão no cache
+    const cachedData = this.cacheService.getFromCache(this.selectedCategory);
     if (cachedData) {
-      // Se os dados estiverem no cache, usa eles diretamente
       this.data = cachedData;
       console.log('Dados carregados do cache:', this.data);
     } else {
-      // Se não tiver no cache, faz a requisição à API
-      this.getdata.doGet(this.selectedCategory).subscribe(res => {
+      this.getdata.doGet(this.selectedCategory).subscribe((res) => {
         this.data = res.data.articles;
         console.log('Dados carregados da API:', this.data);
-        
-        // Armazenar os dados no cache para as próximas requisições
         this.cacheService.saveToCache(this.selectedCategory, this.data);
       });
     }
@@ -60,7 +72,10 @@ export class Tab1Page implements OnInit {
 
   // Filtra as notícias de acordo com a categoria selecionada
   filterNews() {
-    this.loadNews(); // Atualiza as notícias ao selecionar uma nova categoria
+    this.timeTrackerService.stopTracking(); // Finaliza o rastreamento anterior
+    this.selectedCategory = this.selectedCategory; // Atualiza a categoria
+    this.timeTrackerService.startTracking(this.selectedCategory); // Inicia o rastreamento para a nova categoria
+    this.loadNews(); // Recarrega as notícias
   }
 
   // Abre a página de detalhes para o artigo

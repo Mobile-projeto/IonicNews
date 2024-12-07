@@ -5,15 +5,20 @@ import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 
+// Importando o plugin SocialSharing
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot(),  // Certifique-se de incluir o IonicModule aqui
     AppRoutingModule,
     HttpClientModule,  // Certifique-se de incluir o HttpClientModule aqui
   ],
-  providers: [],
+  providers: [
+    SocialSharing
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
