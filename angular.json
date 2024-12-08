@@ -29,6 +29,11 @@
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "firebase-messaging-sw.js", 
+                "input": "src",  
+                "output": "/"     
               }
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
@@ -110,7 +115,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": ["src/global.scss", "src/theme/variables.scss", "node_modules/ngx-toastr/toastr.css"],
             "scripts": []
           },
           "configurations": {

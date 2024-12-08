@@ -17,13 +17,17 @@ export class RegisterPage {
 
   // Função de registro
   register() {
+    
     const userData = {
       username: this.username,  // Alterado para 'username'
       email: this.email,
       password: this.password,
     };
 
-    this.authService.register(userData).subscribe({
+
+    if (!this.username || !this.email || !this.password) {
+      this.errorMessage = 'Preencha todos os campos';           
+    } else { this.authService.register(userData).subscribe({
       next: () => {
         console.log('Usuário cadastrado com sucesso!');
         // Após o cadastro bem-sucedido, redireciona para a página de login
@@ -33,7 +37,8 @@ export class RegisterPage {
         this.errorMessage = 'Usuário já cadastrado!';
         console.error(error);
       },
-    });
+    });}
+  
   }
 
   

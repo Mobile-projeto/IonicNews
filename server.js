@@ -1,9 +1,9 @@
-// server.js
 const express = require('express');
 const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const cors = require('cors');  // Certifique-se de ter o CORS importado
+const admin = require('./firebase-admin-config');  // Firebase Admin SDK para enviar notificações
 
 const app = express();
 const port = 3000;
@@ -66,6 +66,36 @@ app.post('/login', (req, res) => {
   const token = generateToken(user);
 
   res.json({ token });  // Retorna o token JWT para o frontend
+});
+
+// Endpoint de envio de notificação
+app.post('/send-notification', (req, res) => {
+  const { token, title, body } = req.body;
+
+  // Verifica se o token e as informações da notificação estão presentes
+  if (!token || !title || !body) {
+    return res.status(400).send('Token, título e corpo são necessários.');
+  }
+
+  // Enviar a notificação
+  const message = {
+    notification: {
+      title: title,
+      body: body
+    },
+    token: token  // Enviar a notificação para o token específico
+  };
+
+  // Enviar a mensagem via Firebase Cloud Messaging (FCM)
+  admin.messaging().send(message)
+    .then((response) => {
+      console.log('Notificação enviada com sucesso:', response);
+      res.status(200).send('Notificação enviada!');
+    })
+    .catch((error) => {
+      console.error('Erro ao enviar notificação:', error);
+      res.status(500).send('Erro ao enviar notificação');
+    });
 });
 
 // Inicia o servidor

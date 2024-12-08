@@ -77,13 +77,25 @@ ion-card {
   /* Ajustes para dispositivos maiores (exemplo: iPad) */
   @media (min-width: 768px) {
     ion-header {
-      ion-toolbar {
+      ion-toolbar { height: 80px;
+                    display: flex;
+                    justify-content: center;
         ion-title {
           font-size: 2rem; /* Aumenta o tamanho do título */
         }
       }
     }
   
+    .category-bar {
+      font-size: 2em;
+
+      ion-select-option {
+        font-size: 3em;
+      }
+    }
+
+    
+
     ion-card {
       ion-card-header {
         ion-card-title {
@@ -98,5 +110,7 @@ ion-card {
         font-size: 1.6rem; /* Aumenta o conteúdo do card */
       }
     }
+
+    
   }
   

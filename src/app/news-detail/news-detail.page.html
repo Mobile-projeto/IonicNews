@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button text="Voltar"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ article.title }}</ion-title>
   </ion-toolbar>
@@ -19,10 +19,6 @@
     </ion-card-content>
     <ion-button expand="block" color="primary" [href]="article.url" target="_blank">
       Ler mais
-    </ion-button>
-    <!-- Botão de Compartilhar -->
-    <ion-button expand="block" color="secondary" (click)="shareArticle()">
-      Compartilhar
     </ion-button>
   </ion-card>
 </ion-content>

@@ -4,21 +4,23 @@ import { HttpClientModule } from '@angular/common/http';  // Importar o HttpClie
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Importando o plugin SocialSharing
-import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),  // Certifique-se de incluir o IonicModule aqui
+    IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,  // Certifique-se de incluir o HttpClientModule aqui
+    HttpClientModule,
+    ToastrModule.forRoot({ 
+    }), 
+    BrowserAnimationsModule
   ],
-  providers: [
-    SocialSharing
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
