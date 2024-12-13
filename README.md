@@ -98,7 +98,10 @@ O uso do app é simples, feito para facilidade de uso do usuário, seguimos o pa
 <div> 
 Luiz Fellipe Nunes Sassaki - 01608282 <br>
 Jonathan César Gomes Freire Sinício - 01605270 <br>
-Breno Miguel Soares da Silva - 01607454
+Breno Miguel Soares da Silva - 01607454<br>
+Carla Maria Santana Lopes - 01440665<br>
+Monique Rafaela Carvalho Lopes - 01633424<br>
+José Carlos Moura Silva - 01530501  
 </div>
 
 
